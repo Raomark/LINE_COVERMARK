@@ -3,31 +3,14 @@ const LIFF_ID = "2008756827-zANFfOMQ"; // ** เปลี่ยนเป็น L
 
 async function initLiff() {
     try {
-        await liff.init({ liffId: "2008756827-zANFfOMQ" });
+        await liff.init({ liffId: LIFF_ID });
         if (!liff.isLoggedIn()) {
             liff.login();
         } else {
-            const params = new URLSearchParams(window.location.search);
-            
-            // 1. ถ้าเป็นผู้รับของขวัญ (ข้ามไปหน้าเขย่าเลย)
-            if (params.get('mode') === 'receive') {
-                showReceiverPage();
-                return;
-            }
-
-            // 2. ถ้าเป็นผู้ส่ง และยังไม่มี flag ว่าลงทะเบียนแล้ว
-            // หมายเหตุ: หลังจากลงทะเบียนที่ PAMS เสร็จ ต้องให้ระบบ Redirect กลับมาที่
-            // URL: https://liff.line.me/YOUR_LIFF_ID?reg=success
-            if (params.get('reg') !== 'success') {
-                window.location.href = "https://cdp-occ-crm.pams.ai/crm/covermark/register";
-                return;
-            }
-
-            // 3. ถ้าลงทะเบียนสำเร็จแล้ว แสดงหน้าเลือกของขวัญ
-            document.getElementById('sender-view').classList.remove('hidden');
+            checkRoute();
         }
     } catch (err) {
-        console.error("LIFF Error:", err);
+        console.error("LIFF Init Error", err);
     }
 }
 
