@@ -3,7 +3,7 @@ const LIFF_ID = "2008756827-zANFfOMQ"; // ** เปลี่ยนเป็น L
 
 async function initLiff() {
     try {
-        await liff.init({ liffId: "YOUR_LIFF_ID" });
+        await liff.init({ liffId: "2008756827-zANFfOMQ" });
         if (!liff.isLoggedIn()) {
             liff.login();
         } else {
