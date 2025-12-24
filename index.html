@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covermark Gift Experience</title>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="sender-view" class="view">
+        <div class="header">
+            <img src="https://scontent-bkk1-2.xx.fbcdn.net/v/t39.30808-6/568894640_1159153569652178_6771576008005008081_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHsJUsKYMqbR9vHe535hwFuF-6yYE4_1e4X7rJgTj_V7vwj5x1mX7dVa4vNlnnkgp7vkR6ybPtTF1E2yxi5dQRG&_nc_ohc=31XELkDaRjUQ7kNvwF8KD2d&_nc_oc=Adn06XCJZVQ-8HFmq8j1IzZn8ZJ8qBg2I-1kx1yEALFeG65a3F405a5iGq8UMIx5JVA&_nc_zt=23&_nc_ht=scontent-bkk1-2.xx&_nc_gid=1BQAwPCDKaTxPkvS_OTRww&oh=00_Afk29IkVLvhfkT9v1a4QP8mieuAMiQIRI-Kl3Y6Hf82lgg&oe=69512E1B" alt="Covermark" class="logo">
+        </div>
+
+        <div class="step-container">
+            <h3>1. เลือกของขวัญชิ้นพิเศษ</h3>
+<div class="carousel-container">
+    <div class="product-carousel" id="product-carousel">
+        <div class="product-card active" onclick="selectProduct('Moisture Veil LX', this, 'https://www.covermark.co.th/images/product/moisture-veil-lx.jpg')">
+            <img src="https://covermark.co.th/wp-content/uploads/2021/11/Covermark-Moisture-Coat-Gel-600x600-1.png" alt="Moisture Veil">
+            <p>Moisture Veil LX</p>
+            <span>แป้งผสมรองพื้นยอดนิยม</span>
+        </div>
+        <div class="product-card" onclick="selectProduct('Flawless Fit', this, 'https://www.covermark.co.th/images/product/flawless-fit.jpg')">
+            <img src="https://covermark.co.th/wp-content/uploads/2020/04/Connecting-base.jpg" alt="Flawless Fit">
+            <p>Flawless Fit</p>
+            <span>รองพื้นครีมเนื้อเข้มข้น</span>
+        </div>
+        <div class="product-card" onclick="selectProduct('Cell Advanced Cream', this, 'https://www.covermark.co.th/images/product/cell-advanced-cream.jpg')">
+            <img src="https://covermark.co.th/wp-content/uploads/2020/04/Jusme-Liquit.jpg" alt="Cell Advanced">
+            <p>Cell Advanced Cream</p>
+            <span>ครีมบำรุงผิวระดับพรีเมียม</span>
+        </div>
+        <div class="product-card" onclick="selectProduct('Silky Loose Powder', this, 'https://www.covermark.co.th/images/product/loose-powder.jpg')">
+            <img src="https://covermark.co.th/wp-content/uploads/2020/04/COVERMARK_Extraformula-600x600.png" alt="Loose Powder">
+            <p>Silky Loose Powder</p>
+            <span>แป้งฝุ่นเนื้อละเอียด</span>
+        </div>
+        <div class="product-card" onclick="selectProduct('Treatment Cleansing Milk', this, 'https://www.covermark.co.th/images/product/cleansing-milk.jpg')">
+            <img src="https://covermark.co.th/wp-content/uploads/2020/04/4935059042CLV.jpg" alt="Cleansing Milk">
+            <p>Cleansing Milk</p>
+            <span>น้ำล้างหน้าถนอมผิว</span>
+        </div>
+    </div>
+    <div class="carousel-hint">← เลื่อนเพื่อดูสินค้าเพิ่มเติม →</div>
+</div>
+
+
+            <h3>2. ใส่รายละเอียดผู้ให้และผู้รับ</h3>
+            <div class="form-group">
+                <input type="text" id="senderName" placeholder="จาก (ชื่อผู้ส่ง)">
+                <input type="text" id="receiverName" placeholder="ถึง (ชื่อผู้รับ)">
+                <textarea id="message" rows="3" placeholder="เขียนข้อความอวยพรของคุณ..."></textarea>
+            </div>
+
+            <button class="btn-send" onclick="sendToFriend()">ส่งของขวัญให้เพื่อนผ่าน LINE</button>
+        </div>
+    </div>
+
+    <div id="receiver-view" class="view hidden">
+        <div id="shake-step">
+            <div class="gift-container">
+                <div id="gift-box-anim" class="gift-box">🎁</div>
+            </div>
+            <h2 class="instruction-text">คุณได้รับของขวัญ!</h2>
+            <p id="shake-hint">เขย่าโทรศัพท์แรงๆ เพื่อเปิดกล่อง</p>
+            <button class="btn-shake-manual" onclick="startOpeningSequence()">แตะที่กล่องเพื่อเปิด</button>
+        </div>
+
+        <div id="loading-step" class="hidden">
+            <div class="sparkle-loader"></div>
+            <h2 class="gold-text">กำลังเตรียมความงามให้คุณ...</h2>
+        </div>
+
+        <div id="result-step" class="hidden">
+            <div class="result-card">
+                <p class="gold-text">SPECIAL GIFT FOR YOU</p>
+                <h1 id="final-product-name">Product Name</h1>
+                <p id="final-message">Message here</p>
+                <button class="btn-send" onclick="liff.closeWindow()">ปิดหน้าต่าง</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

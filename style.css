@@ -1,0 +1,123 @@
+:root {
+    --gold: #D4AF37;
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --bg: #FDFBF7;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; background-color: var(--bg); color: var(--black);
+}
+
+.view { padding: 20px; text-align: center; min-height: 100vh; box-sizing: border-box; }
+.hidden { display: none !important; }
+
+/* Header & Logo */
+.logo { width: 160px; margin: 20px 0; }
+h3 { font-size: 1.1rem; color: var(--gold); margin-top: 30px; letter-spacing: 1px; }
+
+/* Product Grid */
+.product-grid { display: flex; gap: 15px; overflow-x: auto; padding: 10px 5px; justify-content: center; }
+.product-card {
+    background: white; border: 1px solid #eee; border-radius: 12px;
+    padding: 15px; width: 140px; transition: 0.3s; cursor: pointer;
+}
+.product-card.active { border: 2px solid var(--gold); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); }
+.product-card img { width: 100%; border-radius: 8px; margin-bottom: 10px; }
+
+/* Form */
+.form-group { margin-top: 20px; }
+input, textarea {
+    width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd;
+    border-radius: 8px; font-size: 1rem; box-sizing: border-box;
+}
+
+.btn-send {
+    background: var(--black); color: var(--gold); border: 2px solid var(--gold);
+    padding: 15px 40px; border-radius: 50px; font-weight: bold; width: 100%;
+    margin-top: 20px; cursor: pointer; text-transform: uppercase;
+}
+
+/* Shake Animation */
+.gift-box { font-size: 100px; margin: 50px 0; cursor: pointer; }
+.shake-active { animation: shake-anim 0.5s infinite; }
+
+@keyframes shake-anim {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    20% { transform: translate(-3px, 0px) rotate(-5deg); }
+    40% { transform: translate(3px, 0px) rotate(5deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* Loader */
+.sparkle-loader {
+    width: 50px; height: 50px; border: 3px solid var(--gold);
+    border-top: 3px solid transparent; border-radius: 50%;
+    animation: spin 1s linear infinite; margin: 50px auto;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.gold-text { color: var(--gold); letter-spacing: 1px; }
+
+/* Carousel Style */
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+.product-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* ให้หยุดกึ่งกลางรูปพอดี */
+    -webkit-overflow-scrolling: touch;
+    gap: 15px;
+    padding: 10px 20px;
+}
+
+.product-carousel::-webkit-scrollbar {
+    display: none; /* ซ่อนแถบเลื่อน */
+}
+
+.product-card {
+    flex: 0 0 70%; /* แสดง 1 ชิ้นและเห็นชิ้นถัดไปนิดหน่อย */
+    scroll-snap-align: center;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.product-card p {
+    font-weight: bold;
+    margin: 5px 0;
+    color: var(--black);
+}
+
+.product-card span {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.product-card.active {
+    border: 2px solid var(--gold);
+    transform: scale(1.05);
+    background: #fff;
+}
+
+.carousel-hint {
+    font-size: 0.7rem;
+    color: var(--gold);
+    margin-top: 10px;
+    opacity: 0.7;
+}
